@@ -3,34 +3,39 @@
   "name": "ref-data_symbols",
   "request": {
     "url": "/ref-data/symbols",
-    "method": "GET"
+    "method": "GET",
+    "queryParameters": {
+      "token": {
+        "equalTo": "SecretAPIKEY"
+      }
+    }
   },
   "response": {
     "status": 200,
     "jsonBody": [
       {
-        "symbol": "A",
-        "name": "Agilent Technologies Inc.",
-        "date": "2019-08-08",
-        "isEnabled": true,
-        "type": "cs",
-        "iexId": "2"
+        "currency": "USD",
+        "description": "CK ASSET HOLDINGS LTD-ADR",
+        "displaySymbol": "CNGKY",
+        "figi": "BBG00B0M9VG1",
+        "isin": null,
+        "mic": "OOTC",
+        "shareClassFIGI": "BBG00B0M9W51",
+        "symbol": "CNGKY",
+        "symbol2": "",
+        "type": "ADR"
       },
       {
-        "symbol": "AA",
-        "name": "Alcoa Corporation",
-        "date": "2019-08-08",
-        "isEnabled": true,
-        "type": "cs",
-        "iexId": "12042"
-      },
-      {
-        "symbol": "AAAU",
-        "name": "Perth Mint Physical Gold ETF",
-        "date": "2019-08-08",
-        "isEnabled": true,
-        "type": "N/A",
-        "iexId": "14924"
+        "currency": "USD",
+        "description": "GLOBAL X US CF KINGS 100 ETF",
+        "displaySymbol": "FLOW",
+        "figi": "BBG01H7RNK95",
+        "isin": null,
+        "mic": "ARCX",
+        "shareClassFIGI": "BBG01H7RNL57",
+        "symbol": "FLOW",
+        "symbol2": "",
+        "type": "ETP"
       }
     ],
     "headers": {

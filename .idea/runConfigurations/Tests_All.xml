@@ -7,7 +7,10 @@
     <option name="TEST_OBJECT" value="class" />
     <option name="VM_PARAMETERS" value="-Dapplication.name=my-fuse-app -Dserver.port=8080 -Dapplication.log-dir=$PROJECT_DIR$/../../../../${USERNAME}/logs -Dapplication.log-archive-root-dir=$PROJECT_DIR$/../../../../${USERNAME}/logs/archive" />
     <option name="PARAMETERS" value="" />
-    <option name="WORKING_DIRECTORY" value="file://$MODULE_DIR$" />
+    <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+    <envs>
+      <env name="token" value="d3mkul9r01qmso34a8jgd3mkul9r01qmso34a8k0" />
+    </envs>
     <method v="2">
       <option name="Make" enabled="true" />
     </method>

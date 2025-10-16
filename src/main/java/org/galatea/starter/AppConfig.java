@@ -1,6 +1,7 @@
 package org.galatea.starter;
 
 import feign.Logger;
+import feign.RequestInterceptor;
 import lombok.extern.slf4j.Slf4j;
 import net.sf.aspect4log.aspect.LogAspect;
 import org.galatea.starter.domain.SettlementMission;
@@ -22,6 +23,13 @@ import org.springframework.core.io.ClassPathResource;
 @EnableCaching
 @EnableFeignClients
 public class AppConfig {
+  @Value("${spring.apikey}")
+  private String apiKey;
+
+  @Bean
+  public RequestInterceptor apiKeyRequestInterceptor() {
+    return new ApiKeyRequestInterceptor("SecretAPIKEY");
+  }
 
   /**
    * Create a LogAspect for use with the SpringAOP @Log annotation.

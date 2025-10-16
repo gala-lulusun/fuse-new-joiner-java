@@ -43,10 +43,10 @@ public class IexRestControllerTest extends ASpringTest {
   @Test
   public void testGetSymbolsEndpoint() throws Exception {
     MvcResult result = this.mvc.perform(
-        // note that we were are testing the fuse REST end point here, not the IEX end point.
-        // the fuse end point in turn calls the IEX end point, which is WireMocked for this test.
-        org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get("/iex/symbols")
-            .accept(MediaType.APPLICATION_JSON_VALUE))
+            // note that we were are testing the fuse REST end point here, not the IEX end point.
+            // the fuse end point in turn calls the IEX end point, which is WireMocked for this test.
+            org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get("/iex/symbols")
+                .accept(MediaType.APPLICATION_JSON_VALUE))
         .andExpect(status().isOk())
         // some simple validations, in practice I would expect these to be much more comprehensive.
         .andExpect(jsonPath("$[0].symbol", is("A")))
@@ -59,11 +59,11 @@ public class IexRestControllerTest extends ASpringTest {
   public void testGetLastTradedPrice() throws Exception {
 
     MvcResult result = this.mvc.perform(
-        org.springframework.test.web.servlet.request.MockMvcRequestBuilders
-            .get("/iex/lastTradedPrice?symbols=FB")
-            // This URL will be hit by the MockMvc client. The result is configured in the file
-            // src/test/resources/wiremock/mappings/mapping-lastTradedPrice.json
-            .accept(MediaType.APPLICATION_JSON_VALUE))
+            org.springframework.test.web.servlet.request.MockMvcRequestBuilders
+                .get("/iex/lastTradedPrice?symbols=FB")
+                // This URL will be hit by the MockMvc client. The result is configured in the file
+                // src/test/resources/wiremock/mappings/mapping-lastTradedPrice.json
+                .accept(MediaType.APPLICATION_JSON_VALUE))
         .andExpect(status().isOk())
         .andExpect(jsonPath("$[0].symbol", is("FB")))
         .andExpect(jsonPath("$[0].price").value(new BigDecimal("186.3011")))
@@ -74,9 +74,9 @@ public class IexRestControllerTest extends ASpringTest {
   public void testGetLastTradedPriceEmpty() throws Exception {
 
     MvcResult result = this.mvc.perform(
-        org.springframework.test.web.servlet.request.MockMvcRequestBuilders
-            .get("/iex/lastTradedPrice?symbols=")
-            .accept(MediaType.APPLICATION_JSON_VALUE))
+            org.springframework.test.web.servlet.request.MockMvcRequestBuilders
+                .get("/iex/lastTradedPrice?symbols=")
+                .accept(MediaType.APPLICATION_JSON_VALUE))
         .andExpect(status().isOk())
         .andExpect(jsonPath("$", is(Collections.emptyList())))
         .andReturn();

@@ -2,12 +2,28 @@
   "id" : "16369e06-78d4-40a7-98d1-3dbe0ba82fc9",
   "name" : "tops_last",
   "request" : {
-    "url" : "/tops/last?symbols=FB",
-    "method" : "GET"
+    "url" : "/tops/last",
+    "method" : "GET",
+    "queryParameters": {
+      "token": {
+        "equalTo": "SecretAPIKEY"
+      }
+    }
   },
   "response" : {
     "status" : 200,
-    "jsonBody" : [{"symbol":"FB","price":186.3011,"size":100,"time":1565273330617}],
+    "jsonBody" : [
+      {
+        "c": 246.2502,
+        "d": -3.0898,
+        "dp": -1.2392,
+        "h": 250.18,
+        "l": 246.04,
+        "o": 250.18,
+        "pc": 249.34,
+        "t": 1760637252
+      }
+    ],
     "headers" : {
       "Server" : "nginx",
       "Date" : "Thu, 08 Aug 2019 14:08:53 GMT",

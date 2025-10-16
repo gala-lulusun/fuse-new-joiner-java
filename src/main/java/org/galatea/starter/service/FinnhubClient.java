@@ -33,6 +33,6 @@ public interface FinnhubClient {
    * @return a list of the last traded price for each of the symbols passed in.
    */
   @GetMapping("/tops/last")
-  List<FinnhubLastTradedPrice> getLastTradedPriceForSymbols(@RequestParam("symbols") String[] symbols);
+  List<FinnhubLastTradedPrice> getLastTradedPriceForSymbols(@RequestParam("symbol") String[] symbols);
 
 }

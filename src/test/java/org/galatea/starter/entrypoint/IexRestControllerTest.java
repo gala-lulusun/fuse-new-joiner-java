@@ -45,13 +45,13 @@ public class IexRestControllerTest extends ASpringTest {
     MvcResult result = this.mvc.perform(
             // note that we were are testing the fuse REST end point here, not the IEX end point.
             // the fuse end point in turn calls the IEX end point, which is WireMocked for this test.
-            org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get("/iex/symbols")
-                .accept(MediaType.APPLICATION_JSON_VALUE))
+            org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get("/stock/symbol")
+                .accept(MediaType.APPLICATION_JSON_VALUE)) // This url matches the URL in the application.yml settings
         .andExpect(status().isOk())
         // some simple validations, in practice I would expect these to be much more comprehensive.
-        .andExpect(jsonPath("$[0].symbol", is("A")))
-        .andExpect(jsonPath("$[1].symbol", is("AA")))
-        .andExpect(jsonPath("$[2].symbol", is("AAAU")))
+        .andExpect(jsonPath("$[0].symbol", is("CNGKY")))
+        .andExpect(jsonPath("$[1].symbol", is("FLOW")))
+        .andExpect(jsonPath("$[0].currency", is("USD")))
         .andReturn();
   }
 
@@ -60,13 +60,12 @@ public class IexRestControllerTest extends ASpringTest {
 
     MvcResult result = this.mvc.perform(
             org.springframework.test.web.servlet.request.MockMvcRequestBuilders
-                .get("/iex/lastTradedPrice?symbols=FB")
+                .get("/quote?symbol=FB")
                 // This URL will be hit by the MockMvc client. The result is configured in the file
                 // src/test/resources/wiremock/mappings/mapping-lastTradedPrice.json
                 .accept(MediaType.APPLICATION_JSON_VALUE))
         .andExpect(status().isOk())
-        .andExpect(jsonPath("$[0].symbol", is("FB")))
-        .andExpect(jsonPath("$[0].price").value(new BigDecimal("186.3011")))
+        .andExpect(jsonPath("c").value(246.2502))
         .andReturn();
   }
 

@@ -44,7 +44,7 @@ public class FinnhubRestController {
   @GetMapping(value = "${mvc.finnhub.getLastTradedPricePath}", produces = {
       MediaType.APPLICATION_JSON_VALUE})
   public List<FinnhubLastTradedPrice> getLastTradedPrice(
-      @RequestParam(value = "symbols") final List<String> symbols) {
+      @RequestParam(value = "symbol") final List<String> symbols) {
     return finnhubService.getLastTradedPriceForSymbols(symbols);
   }
 

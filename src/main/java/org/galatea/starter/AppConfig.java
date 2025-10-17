@@ -28,7 +28,7 @@ public class AppConfig {
 
   @Bean
   public RequestInterceptor apiKeyRequestInterceptor() {
-    return new ApiKeyRequestInterceptor("SecretAPIKEY");
+    return new ApiKeyRequestInterceptor(apiKey);
   }
 
   /**

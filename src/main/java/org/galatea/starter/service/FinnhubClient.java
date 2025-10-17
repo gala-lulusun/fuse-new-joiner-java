@@ -8,26 +8,29 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 /**
- * A Feign Declarative REST Client to access endpoints from the Free and Open IEX API to get market
- * data. See https://iextrading.com/developer/docs/
+ * A Feign Declarative REST Client to access endpoints from the Finnhub API to get market
+ * data. See https://finnhub.io/docs/api/introduction
  */
 @FeignClient(name = "FINNHUB", url = "${spring.rest.finnhubBasePath}")
 public interface FinnhubClient {
 
   /**
-   * ?????? Rewrite this when I know what's going on
-   * Get a list of all stocks supported by IEX. See https://iextrading.com/developer/docs/#symbols.
-   * As of July 2019 this returns almost 9,000 symbols, so maybe don't call it in a loop.
+   * Get a list of all stocks supported by Finnhub. See https://finnhub.io/docs/api/stock-symbols.
+   * Constant polling is not recommended - use websocket if you need real-time updates.
    *
-   * @return a list of all of the stock symbols supported by IEX.
+   * @return a list of all stock symbols supported by Finnhub.
    */
-  @GetMapping("/ref-data/symbols")
+  @GetMapping("/ref-data/symbol")
 
-  List<FinnhubSymbol> getAllSymbols();
+  List<FinnhubSymbol> getAllSymbols(
+      @RequestParam("exchange") String exchange,
+      @RequestParam(value = "mic", required = false) String mic,
+      @RequestParam(value = "figi", required = false) String figi,
+      @RequestParam(value = "currency", required = false) String currency
+  );
 
   /**
-   * ????? Rewrite this when I know what's going on
-   * Get the last traded price for each stock symbol passed in. See https://iextrading.com/developer/docs/#last.
+   * Get the last traded price for each stock symbol passed in. See https://finnhub.io/docs/api/quote.
    *
    * @param symbols stock symbols to get last traded price for.
    * @return a list of the last traded price for each of the symbols passed in.

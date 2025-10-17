@@ -26,13 +26,18 @@ public class FinnhubRestController {
   private FinnhubService finnhubService;
 
   /**
-   * Exposes an endpoint to get all of the symbols available on Finnhub.
+   * Exposes an endpoint to get all symbols on Finnhub.
    *
    * @return a list of all Finnhub Symbols.
    */
   @GetMapping(value = "${mvc.finnhub.getAllSymbolsPath}", produces = {MediaType.APPLICATION_JSON_VALUE})
-  public List<FinnhubSymbol> getAllStockSymbols() {
-    return finnhubService.getAllSymbols();
+  public List<FinnhubSymbol> getAllStockSymbols(
+      @RequestParam String exchange,
+      @RequestParam(required = false) String mic,
+      @RequestParam(required = false) String figi,
+      @RequestParam(required = false) String currency
+  ) {
+    return finnhubService.getAllSymbols(exchange, mic, figi, currency);
   }
 
   /**

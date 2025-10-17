@@ -7,8 +7,11 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.galatea.starter.domain.FinnhubLastTradedPrice;
 import org.galatea.starter.domain.FinnhubSymbol;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * A layer for transformation, aggregation, and business required when retrieving data from IEX.
@@ -23,12 +26,19 @@ public class FinnhubService {
 
 
   /**
-   * Get all stock symbols from IEX.
+   * Get all stock symbols from Finnhub for the exchange code given
    *
-   * @return a list of all Stock Symbols from IEX.
+   * @return a list of all Stock Symbols from Finnhub.
    */
-  public List<FinnhubSymbol> getAllSymbols() {
-    return finnhubClient.getAllSymbols();
+
+  @GetMapping(value = "${mvc.finnhub.getAllSymbolsPath}", produces = {MediaType.APPLICATION_JSON_VALUE})
+  public List<FinnhubSymbol> getAllSymbols(
+      @RequestParam String exchange,
+      @RequestParam(required = false) String mic,
+      @RequestParam(required = false) String figi,
+      @RequestParam(required = false) String currency
+  ) {
+    return finnhubClient.getAllSymbols(exchange, mic, figi, currency);
   }
 
   /**

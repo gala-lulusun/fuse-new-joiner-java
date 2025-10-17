@@ -9,7 +9,7 @@
         "equalTo": "FB"
       },
       "token": {
-        "equalTo": "SecretAPIKEY"
+        "matches": ".*"
       }
     }
   },

@@ -27,6 +27,7 @@ public class FinnhubService {
 
   /**
    * Get all stock symbols from Finnhub for the exchange code given
+   * Other optional parameters can be used, though are not integrated into tests just yet
    *
    * @return a list of all Stock Symbols from Finnhub.
    */
@@ -44,15 +45,12 @@ public class FinnhubService {
   /**
    * Get the last traded price for each Symbol that is passed in.
    *
-   * @param symbols the list of symbols to get a last traded price for.
+   * @param symbol stock symbol to get real-time quote data.
    * @return a list of last traded price objects for each Symbol that is passed in.
    */
-  public List<FinnhubLastTradedPrice> getLastTradedPriceForSymbols(final List<String> symbols) {
-    if (CollectionUtils.isEmpty(symbols)) {
-      return Collections.emptyList();
-    } else {
-      return finnhubClient.getLastTradedPriceForSymbols(symbols.toArray(new String[0]));
-    }
+  public List<FinnhubLastTradedPrice> getLastTradedPriceForSymbols(final String symbol) {
+
+      return Collections.singletonList(finnhubClient.getLastTradedPriceForSymbols(symbol));
   }
 
 

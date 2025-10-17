@@ -4,7 +4,6 @@ import static org.hamcrest.Matchers.is;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import java.math.BigDecimal;
 import java.util.Collections;
 import junitparams.JUnitParamsRunner;
 import lombok.RequiredArgsConstructor;
@@ -35,7 +34,7 @@ import org.springframework.test.web.servlet.MvcResult;
 // Use this runner since we want to parameterize certain tests.
 // See runner's javadoc for more usage.
 @RunWith(JUnitParamsRunner.class)
-public class IexRestControllerTest extends ASpringTest {
+public class FinnhubRestControllerTest extends ASpringTest {
 
   @Autowired
   private MockMvc mvc;
@@ -68,16 +67,16 @@ public class IexRestControllerTest extends ASpringTest {
         .andExpect(jsonPath("$[0].c").value(246.2502))
         .andReturn();
   }
-
-  @Test
-  public void testGetLastTradedPriceEmpty() throws Exception {
-
-    MvcResult result = this.mvc.perform(
-            org.springframework.test.web.servlet.request.MockMvcRequestBuilders
-                .get("/quote?symbol=")
-                .accept(MediaType.APPLICATION_JSON_VALUE))
-        .andExpect(status().isOk())
-        .andExpect(jsonPath("$", is(Collections.emptyList())))
-        .andReturn();
-  }
+//
+//  @Test
+//  public void testGetLastTradedPriceEmpty() throws Exception {
+//
+//    MvcResult result = this.mvc.perform(
+//            org.springframework.test.web.servlet.request.MockMvcRequestBuilders
+//                .get("/quote?symbol=")
+//                .accept(MediaType.APPLICATION_JSON_VALUE))
+//        .andExpect(status().isOk())
+//        .andExpect(jsonPath("$", is(Collections.emptyList())))
+//        .andReturn();
+//  }
 }

@@ -9,6 +9,11 @@ import org.springframework.context.annotation.Bean;
 @Slf4j
 public class ApiKeyRequestInterceptor implements RequestInterceptor {
 
+  /**
+   * Injects the Finnhub API key (defined in the environment variable, referenced in application.yml)
+   * Template query adds API key under "token" parameter as required by Finnhub API.
+   */
+
   public final String apiKey;
   public ApiKeyRequestInterceptor(String apiKey) {
     this.apiKey = apiKey;

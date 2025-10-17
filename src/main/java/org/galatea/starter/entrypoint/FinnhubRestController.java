@@ -43,14 +43,14 @@ public class FinnhubRestController {
   /**
    * Get the last traded price for each of the symbols passed in.
    *
-   * @param symbols list of symbols to get last traded price for.
-   * @return a List of IexLastTradedPrice objects for the given symbols.
+   * @param symbol stock symbol to get real-time quote data.
+   * @return .
    */
   @GetMapping(value = "${mvc.finnhub.getLastTradedPricePath}", produces = {
       MediaType.APPLICATION_JSON_VALUE})
   public List<FinnhubLastTradedPrice> getLastTradedPrice(
-      @RequestParam(value = "symbol") final List<String> symbols) {
-    return finnhubService.getLastTradedPriceForSymbols(symbols);
+      @RequestParam(value = "symbol") final String symbol) {
+    return finnhubService.getLastTradedPriceForSymbols(symbol);
   }
 
 }

@@ -23,6 +23,12 @@ import org.springframework.core.io.ClassPathResource;
 @EnableCaching
 @EnableFeignClients
 public class AppConfig {
+
+  /**
+   * Injects the API key into the GET request URL, not the header. Finnhub can take either.
+   * API key is stored as an environment variable in IntelliJ, referenced in application.yml
+   */
+
   @Value("${spring.apikey}")
   private String apiKey;
 

@@ -17,10 +17,10 @@ public interface FinnhubClient {
   /**
    * Get a list of all stocks supported by Finnhub. See https://finnhub.io/docs/api/stock-symbols.
    * Constant polling is not recommended - use websocket if you need real-time updates.
-   *
+   * Other optional parameters may be passed in for filtering, though not integrated into tests yet.
    * @return a list of all stock symbols supported by Finnhub.
    */
-  @GetMapping("/ref-data/symbol")
+  @GetMapping("/stock/symbol")
 
   List<FinnhubSymbol> getAllSymbols(
       @RequestParam("exchange") String exchange,
@@ -32,10 +32,10 @@ public interface FinnhubClient {
   /**
    * Get the last traded price for each stock symbol passed in. See https://finnhub.io/docs/api/quote.
    *
-   * @param symbols stock symbols to get last traded price for.
+   * @param symbol stock symbol to get real-time quote data.
    * @return a list of the last traded price for each of the symbols passed in.
    */
-  @GetMapping("/tops/last")
-  List<FinnhubLastTradedPrice> getLastTradedPriceForSymbols(@RequestParam("symbol") String[] symbols);
+  @GetMapping("/quote")
+  FinnhubLastTradedPrice getLastTradedPriceForSymbols(@RequestParam("symbol") String symbol);
 
 }

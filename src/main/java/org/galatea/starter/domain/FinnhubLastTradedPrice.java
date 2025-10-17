@@ -7,11 +7,12 @@ import lombok.Data;
 @Data
 @Builder
 public class FinnhubLastTradedPrice {
-  private String currency;
-  private String description;
-  private String displaySymbol;
-  private String figi;
-  private String mic;
-  private String symbol;
-  private String type;
+  private float c;
+  private float d;
+  private float dp;
+  private float h;
+  private float l;
+  private float o;
+  private float pc;
+  private float t;
 }

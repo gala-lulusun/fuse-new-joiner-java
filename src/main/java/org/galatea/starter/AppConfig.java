@@ -1,6 +1,7 @@
 package org.galatea.starter;
 
 import feign.Logger;
+import feign.RequestInterceptor;
 import lombok.extern.slf4j.Slf4j;
 import net.sf.aspect4log.aspect.LogAspect;
 import org.galatea.starter.domain.SettlementMission;
@@ -22,6 +23,19 @@ import org.springframework.core.io.ClassPathResource;
 @EnableCaching
 @EnableFeignClients
 public class AppConfig {
+
+  /**
+   * Injects the API key into the GET request URL, not the header. Finnhub can take either.
+   * API key is stored as an environment variable in IntelliJ, referenced in application.yml
+   */
+
+  @Value("${spring.apikey}")
+  private String apiKey;
+
+  @Bean
+  public RequestInterceptor apiKeyRequestInterceptor() {
+    return new ApiKeyRequestInterceptor(apiKey);
+  }
 
   /**
    * Create a LogAspect for use with the SpringAOP @Log annotation.

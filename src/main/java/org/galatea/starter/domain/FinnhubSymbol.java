@@ -1,6 +1,5 @@
 package org.galatea.starter.domain;
 
-import java.util.Date;
 import lombok.Builder;
 import lombok.Data;
 

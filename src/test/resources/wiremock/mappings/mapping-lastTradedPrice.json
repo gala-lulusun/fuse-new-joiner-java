@@ -2,7 +2,7 @@
   "id" : "16369e06-78d4-40a7-98d1-3dbe0ba82fc9",
   "name" : "tops_last",
   "request" : {
-    "urlPattern" : "/tops/last.*",
+    "urlPattern" : "/quote.*",
     "method" : "GET",
     "queryParameters": {
       "symbol" : {
@@ -15,7 +15,7 @@
   },
   "response" : {
     "status" : 200,
-    "jsonBody" : [
+    "jsonBody" :
       {
         "c": 246.2502,
         "d": -3.0898,
@@ -25,8 +25,7 @@
         "o": 250.18,
         "pc": 249.34,
         "t": 1760637252
-      }
-    ],
+      },
     "headers" : {
       "Server" : "nginx",
       "Date" : "Thu, 08 Aug 2019 14:08:53 GMT",

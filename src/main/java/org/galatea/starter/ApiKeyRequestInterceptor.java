@@ -3,8 +3,6 @@ package org.galatea.starter;
 import feign.RequestInterceptor;
 import feign.RequestTemplate;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.context.annotation.Bean;
-
 
 @Slf4j
 public class ApiKeyRequestInterceptor implements RequestInterceptor {

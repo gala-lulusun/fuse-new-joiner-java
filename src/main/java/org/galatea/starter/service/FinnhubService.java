@@ -9,7 +9,6 @@ import org.galatea.starter.domain.FinnhubLastTradedPrice;
 import org.galatea.starter.domain.FinnhubSymbol;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
-import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -27,30 +26,24 @@ public class FinnhubService {
 
   /**
    * Get all stock symbols from Finnhub for the exchange code given
-   * Other optional parameters can be used, though are not integrated into tests just yet
-   *
+   * Other optional parameters can be used to filter results by mic, figi, currency.
    * @return a list of all Stock Symbols from Finnhub.
    */
 
-  @GetMapping(value = "${mvc.finnhub.getAllSymbolsPath}", produces = {MediaType.APPLICATION_JSON_VALUE})
-  public List<FinnhubSymbol> getAllSymbols(
-      @RequestParam String exchange,
-      @RequestParam(required = false) String mic,
-      @RequestParam(required = false) String figi,
-      @RequestParam(required = false) String currency
-  ) {
+  public List<FinnhubSymbol> getAllSymbols(final String exchange, String mic, String figi, String currency) {
+    System.out.printf("mic: %s, figi: %s, currency: %s", mic, figi, currency);
     return finnhubClient.getAllSymbols(exchange, mic, figi, currency);
   }
 
   /**
-   * Get the last traded price for each Symbol that is passed in.
+   * Get the last traded price for a symbol that is passed in.
    *
    * @param symbol stock symbol to get real-time quote data.
-   * @return a list of last traded price objects for each Symbol that is passed in.
+   * @return a singleton list of price object returned by API.
    */
   public List<FinnhubLastTradedPrice> getLastTradedPriceForSymbols(final String symbol) {
-
-      return Collections.singletonList(finnhubClient.getLastTradedPriceForSymbols(symbol));
+    System.out.printf("symbol: %s", symbol);
+    return Collections.singletonList(finnhubClient.getLastTradedPriceForSymbols(symbol));
   }
 
 

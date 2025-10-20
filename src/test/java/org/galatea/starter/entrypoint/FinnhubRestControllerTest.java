@@ -4,7 +4,6 @@ import static org.hamcrest.Matchers.is;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import java.util.Collections;
 import junitparams.JUnitParamsRunner;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -67,16 +66,5 @@ public class FinnhubRestControllerTest extends ASpringTest {
         .andExpect(jsonPath("$[0].c").value(246.2502))
         .andReturn();
   }
-//
-//  @Test
-//  public void testGetLastTradedPriceEmpty() throws Exception {
-//
-//    MvcResult result = this.mvc.perform(
-//            org.springframework.test.web.servlet.request.MockMvcRequestBuilders
-//                .get("/quote?symbol=")
-//                .accept(MediaType.APPLICATION_JSON_VALUE))
-//        .andExpect(status().isOk())
-//        .andExpect(jsonPath("$", is(Collections.emptyList())))
-//        .andReturn();
-//  }
+
 }

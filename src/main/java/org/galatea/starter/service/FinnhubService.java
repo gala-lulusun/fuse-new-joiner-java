@@ -1,5 +1,6 @@
 package org.galatea.starter.service;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import lombok.NonNull;
@@ -31,8 +32,10 @@ public class FinnhubService {
    */
 
   public List<FinnhubSymbol> getAllSymbols(final String exchange, String mic, String figi, String currency) {
-    System.out.printf("mic: %s, figi: %s, currency: %s", mic, figi, currency);
-    return finnhubClient.getAllSymbols(exchange, mic, figi, currency);
+    log.info("Retrieving symbols using FinnhubService.getAllSymbols endpoint taking in the following parameters: mic={}, figi={}, currency={}", mic, figi, currency);
+    List<FinnhubSymbol> symbols = finnhubClient.getAllSymbols(exchange, mic, figi, currency);
+    log.info("Retrieved symbols using FinnhubService.getAllSymbols endpoint: symbols={}", symbols);
+    return symbols;
   }
 
   /**
@@ -42,8 +45,10 @@ public class FinnhubService {
    * @return a singleton list of price object returned by API.
    */
   public List<FinnhubLastTradedPrice> getLastTradedPriceForSymbols(final String symbol) {
-    System.out.printf("symbol: %s", symbol);
-    return Collections.singletonList(finnhubClient.getLastTradedPriceForSymbols(symbol));
+    log.info("Retrieving price info using FinnhubService.getLastTradedPriceForSymbols endpoint taking in the following parameter: symbol={}", symbol);
+    List<FinnhubLastTradedPrice> lastTradedPrices =  Collections.singletonList(finnhubClient.getLastTradedPriceForSymbols(symbol));
+    log.info("Retrieved price info using FinnhubService.getLastTradedPriceForSymbols endpoint : lastTradedPrices={}", lastTradedPrices);
+    return lastTradedPrices;
   }
 
 

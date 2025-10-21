@@ -1,6 +1,7 @@
 package org.galatea.starter.service;
 
 import java.util.List;
+import org.galatea.starter.domain.FinnhubEarningsCalendarEntries;
 import org.galatea.starter.domain.FinnhubLastTradedPrice;
 import org.galatea.starter.domain.FinnhubSymbol;
 import org.springframework.cloud.openfeign.FeignClient;
@@ -22,7 +23,6 @@ public interface FinnhubClient {
    * @return a list of all stock symbols supported by Finnhub.
    */
   @GetMapping(value = "${mvc.finnhub.getAllSymbolsPath}", produces = {MediaType.APPLICATION_JSON_VALUE})
-
   List<FinnhubSymbol> getAllSymbols(
       @RequestParam("exchange") String exchange,
       @RequestParam(value = "mic", required = false) String mic,
@@ -38,5 +38,18 @@ public interface FinnhubClient {
    */
   @GetMapping(value = "${mvc.finnhub.getLastTradedPricePath}", produces = {MediaType.APPLICATION_JSON_VALUE})
   FinnhubLastTradedPrice getLastTradedPriceForSymbols(@RequestParam("symbol") String symbol);
+
+  /**
+   * Get historical and coming earnings release. See https://finnhub.io/docs/api/earnings-calendar.
+   *
+   * Optional parameters for filtering: date range (to, from) & symbol.
+   * @return a list of the earnings calendar entries for the params passed in.
+   */
+  @GetMapping(value = "${mvc.finnhub.getEarningsCalendarPath}", produces = {MediaType.APPLICATION_JSON_VALUE})
+  FinnhubEarningsCalendarEntries getEarningsCalendar(
+      @RequestParam (value = "from", required = false) String fromDate,
+      @RequestParam (value = "to", required = false) String toDate,
+      @RequestParam (value = "symbol", required = false) String symbol
+  );
 
 }

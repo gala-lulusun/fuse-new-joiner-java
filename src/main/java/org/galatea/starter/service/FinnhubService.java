@@ -1,17 +1,14 @@
 package org.galatea.starter.service;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.galatea.starter.domain.FinnhubEarningsCalendarEntries.FinnhubEarningsEntry;
 import org.galatea.starter.domain.FinnhubLastTradedPrice;
 import org.galatea.starter.domain.FinnhubSymbol;
-import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * A layer for transformation, aggregation, and business required when retrieving data from IEX.
@@ -49,6 +46,19 @@ public class FinnhubService {
     List<FinnhubLastTradedPrice> lastTradedPrices =  Collections.singletonList(finnhubClient.getLastTradedPriceForSymbols(symbol));
     log.info("Retrieved price info using FinnhubService.getLastTradedPriceForSymbols endpoint : lastTradedPrices={}", lastTradedPrices);
     return lastTradedPrices;
+  }
+
+  /**
+   * Get historical and coming earnings release. See https://finnhub.io/docs/api/earnings-calendar.
+   *
+   * Optional parameters for filtering: date range (to, from) & symbol.
+   * @return a list of the earnings calendar entries for the params passed in.
+   */
+  public List<FinnhubEarningsEntry> getEarningsCalendar(String fromDate, String toDate, String symbol) {
+    log.info("Retrieving earnings calendar taking the parameters: fromDate={}, toDate={}, symbol={}", fromDate, toDate, symbol);
+    List<FinnhubEarningsEntry> earningsCalendars = finnhubClient.getEarningsCalendar(fromDate, toDate, symbol).finnhubEntries;
+    log.info("Retrieved earnings calendar: earningsCalendars={}", earningsCalendars);
+    return earningsCalendars;
   }
 
 

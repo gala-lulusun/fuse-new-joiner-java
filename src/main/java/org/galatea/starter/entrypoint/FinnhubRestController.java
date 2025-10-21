@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import net.sf.aspect4log.Log;
 import net.sf.aspect4log.Log.Level;
+import org.galatea.starter.domain.FinnhubEarningsCalendarEntries.FinnhubEarningsEntry;
 import org.galatea.starter.domain.FinnhubLastTradedPrice;
 import org.galatea.starter.domain.FinnhubSymbol;
 import org.galatea.starter.service.FinnhubService;
@@ -53,4 +54,20 @@ public class FinnhubRestController {
     return finnhubService.getLastTradedPriceForSymbols(symbol);
   }
 
+  /**
+   * Get historical and coming earnings release. See https://finnhub.io/docs/api/earnings-calendar.
+   *
+   * Optional parameters for filtering: date range (to, from) & symbol.
+   * @return a list of the earnings calendar entries for the params passed in.
+   */
+  @GetMapping(value = "${mvc.finnhub.getEarningsCalendarPath}", produces = {
+      MediaType.APPLICATION_JSON_VALUE})
+  public List<FinnhubEarningsEntry> getEarningsCalendar(
+      @RequestParam (value = "from", required = false) String fromDate,
+      @RequestParam (value = "to", required = false) String toDate,
+      @RequestParam (value = "symbol", required = false) String symbol
+  ) {
+    return finnhubService.getEarningsCalendar(fromDate, toDate, symbol);
+
+  }
 }

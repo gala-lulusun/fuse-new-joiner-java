@@ -4,6 +4,7 @@ import static org.hamcrest.Matchers.is;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+import java.util.Collections;
 import junitparams.JUnitParamsRunner;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -64,6 +65,52 @@ public class FinnhubRestControllerTest extends ASpringTest {
                 .accept(MediaType.APPLICATION_JSON_VALUE))
         .andExpect(status().isOk())
         .andExpect(jsonPath("$[0].c").value(246.2502))
+        .andReturn();
+  }
+
+  @Test
+  public void testGetEarningsCalendar() throws Exception {
+
+    MvcResult result = this.mvc.perform(
+            org.springframework.test.web.servlet.request.MockMvcRequestBuilders
+                .get("/calendar/earnings")
+                // This URL will be hit by the MockMvc client. The result is configured in the file
+                // src/test/resources/wiremock/mappings/mapping-earningsCalendar.json
+                .accept(MediaType.APPLICATION_JSON_VALUE))
+        .andExpect(status().isOk())
+        .andExpect(jsonPath("$[0].symbol", is ("FFBB")))
+        .andExpect(jsonPath("$[1].date", is ("2025-10-21")))
+        .andExpect(jsonPath("$[1].revenueActual").value(207930000))
+        .andReturn();
+  }
+
+  @Test
+  public void testGetEarningsCalendarFilters() throws Exception {
+
+    MvcResult result = this.mvc.perform(
+            org.springframework.test.web.servlet.request.MockMvcRequestBuilders
+                .get("/calendar/earnings?from=2025-09-01&to=2025-10-09")
+                // This URL will be hit by the MockMvc client. The result is configured in the file
+                // src/test/resources/wiremock/mappings/mapping-earningsCalendar.json
+                .accept(MediaType.APPLICATION_JSON_VALUE))
+        .andExpect(status().isOk())
+        .andExpect(jsonPath("$[0].symbol", is ("APLD")))
+        .andExpect(jsonPath("$[1].date", is ("2025-10-09")))
+        .andExpect(jsonPath("$[2].revenueActual").value(209189000))
+        .andReturn();
+  }
+
+  @Test
+  public void testGetEarningsCalendarWrongFilters() throws Exception {
+  // API will not return anything for dates out of the range of present-day/future timeline
+    MvcResult result = this.mvc.perform(
+            org.springframework.test.web.servlet.request.MockMvcRequestBuilders
+                .get("/calendar/earnings?from=2024-09-01&to=2024-10-09")
+                // This URL will be hit by the MockMvc client. The result is configured in the file
+                // src/test/resources/wiremock/mappings/mapping-earningsCalendar.json
+                .accept(MediaType.APPLICATION_JSON_VALUE))
+        .andExpect(status().isOk())
+        .andExpect(jsonPath("$", is (Collections.emptyList())))
         .andReturn();
   }
 

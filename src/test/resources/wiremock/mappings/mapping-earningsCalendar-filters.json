@@ -1,0 +1,79 @@
+{
+  "name" : "earnings_cal_filters",
+  "request" : {
+    "urlPattern" : "^/calendar/earnings\\?from=2025-09-01&to=2025-10-09&token=[^&]+$",
+    "method" : "GET",
+    "queryParameters": {
+      "from": {
+        "matches": "2025-09-01"
+      },
+      "to": {
+        "matches": "2025-10-09"
+      },
+      "token": {
+        "matches": ".*"
+      }
+    }
+  },
+  "response" : {
+    "status" : 200,
+    "jsonBody" :
+    {
+      "earningsCalendar": [
+        {
+          "date": "2025-10-09",
+          "epsActual": -0.07,
+          "epsEstimate": -0.1352,
+          "hour": "amc",
+          "quarter": 1,
+          "revenueActual": 64216000,
+          "revenueEstimate": 50968155,
+          "symbol": "APLD",
+          "year": 2026
+        },
+        {
+          "date": "2025-10-09",
+          "epsActual": 2.29,
+          "epsEstimate": 2.2803,
+          "hour": "bmo",
+          "quarter": 3,
+          "revenueActual": 23937000000,
+          "revenueEstimate": 24065161465,
+          "symbol": "PEP",
+          "year": 2025
+        },
+        {
+          "date": "2025-10-09",
+          "epsActual": 0.04,
+          "epsEstimate": 0.0204,
+          "hour": "bmo",
+          "quarter": 1,
+          "revenueActual": 209189000,
+          "revenueEstimate": 208243200,
+          "symbol": "NEOG",
+          "year": 2026
+        }
+      ]
+    },
+    "headers" : {
+      "Server" : "nginx",
+      "Date" : "Thu, 08 Aug 2019 14:08:53 GMT",
+      "Content-Type" : "application/json; charset=utf-8",
+      "Connection" : "keep-alive",
+      "set-cookie" : "ctoken=958c0e17a3f542a2a13ef676b670326d; Domain=.iextrading.com; Path=/; Expires=Fri, 09 Aug 2019 02:08:53 GMT; Secure",
+      "Content-Security-Policy" : "default-src 'self'; child-src 'none'; object-src 'none'; style-src 'self' 'unsafe-inline'; font-src data:; frame-src 'self'; connect-src 'self' https://auth.iextrading.com https://api.iextrading.com https://api.iextrading.com wss://iextrading.com wss://tops.iextrading.com wss://api.iextrading.com wss://iextrading.com https://iextrading.com/member-center; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.google-analytics.com/analytics.js;",
+      "X-Content-Security-Policy" : "default-src 'self'; child-src 'none'; object-src 'none'; style-src 'self' 'unsafe-inline'; font-src data:; frame-src 'self'; connect-src 'self' https://auth.iextrading.com https://api.iextrading.com https://api.iextrading.com wss://iextrading.com wss://tops.iextrading.com wss://api.iextrading.com wss://iextrading.com https://iextrading.com/member-center; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.google-analytics.com/analytics.js;",
+      "Frame-Options" : "SAMEORIGIN",
+      "X-Frame-Options" : "SAMEORIGIN",
+      "X-Content-Type-Options" : "nosniff",
+      "Strict-Transport-Security" : "max-age=15768000",
+      "Access-Control-Allow-Origin" : "*",
+      "Access-Control-Allow-Credentials" : "true",
+      "Access-Control-Allow-Methods" : "GET, OPTIONS",
+      "Access-Control-Allow-Headers" : "Origin, X-Requested-With, Content-Type, Accept"
+    }
+  },
+  "uuid" : "16369e06-78d4-40a7-98d1-3dbe0ba82fc9",
+  "persistent" : true,
+  "insertionIndex" : 5
+}

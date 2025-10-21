@@ -27,6 +27,7 @@ mvc:
    finnhub:
      getAllSymbolsPath: /stock/symbol
      getLastTradedPricePath: /quote
+     getEarningsCalendarPath: /calendar/earnings
 
    max-size-trace-payload: 50000
 jms:

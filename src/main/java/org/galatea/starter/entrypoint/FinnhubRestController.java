@@ -60,7 +60,6 @@ public class FinnhubRestController {
    * Optional parameters for filtering: date range (to, from) & symbol.
    * @return a list of the earnings calendar entries for the params passed in.
    */
-
   @GetMapping(value = "${mvc.finnhub.getEarningsCalendarPath}", produces = {
       MediaType.APPLICATION_JSON_VALUE})
   public List<FinnhubEarningsEntry> getEarningsCalendar(

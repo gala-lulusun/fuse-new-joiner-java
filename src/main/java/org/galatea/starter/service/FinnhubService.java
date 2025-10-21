@@ -54,7 +54,6 @@ public class FinnhubService {
    * Optional parameters for filtering: date range (to, from) & symbol.
    * @return a list of the earnings calendar entries for the params passed in.
    */
-
   public List<FinnhubEarningsEntry> getEarningsCalendar(String fromDate, String toDate, String symbol) {
     log.info("Retrieving earnings calendar taking the parameters: fromDate={}, toDate={}, symbol={}", fromDate, toDate, symbol);
     List<FinnhubEarningsEntry> earningsCalendars = finnhubClient.getEarningsCalendar(fromDate, toDate, symbol).finnhubEntries;

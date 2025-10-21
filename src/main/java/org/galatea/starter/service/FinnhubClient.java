@@ -2,7 +2,6 @@ package org.galatea.starter.service;
 
 import java.util.List;
 import org.galatea.starter.domain.FinnhubEarningsCalendarEntries;
-import org.galatea.starter.domain.FinnhubEarningsCalendarEntries.FinnhubEarningsEntry;
 import org.galatea.starter.domain.FinnhubLastTradedPrice;
 import org.galatea.starter.domain.FinnhubSymbol;
 import org.springframework.cloud.openfeign.FeignClient;

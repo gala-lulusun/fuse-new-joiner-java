@@ -1,12 +1,10 @@
 package org.galatea.starter.service;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.galatea.starter.domain.FinnhubEarningsCalendarEntries;
 import org.galatea.starter.domain.FinnhubEarningsCalendarEntries.FinnhubEarningsEntry;
 import org.galatea.starter.domain.FinnhubLastTradedPrice;
 import org.galatea.starter.domain.FinnhubSymbol;

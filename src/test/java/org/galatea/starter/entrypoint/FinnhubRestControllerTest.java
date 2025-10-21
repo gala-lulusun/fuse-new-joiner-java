@@ -102,7 +102,7 @@ public class FinnhubRestControllerTest extends ASpringTest {
 
   @Test
   public void testGetEarningsCalendarWrongFilters() throws Exception {
-
+  // API will not return anything for dates out of the range of present-day/future timeline
     MvcResult result = this.mvc.perform(
             org.springframework.test.web.servlet.request.MockMvcRequestBuilders
                 .get("/calendar/earnings?from=2024-09-01&to=2024-10-09")

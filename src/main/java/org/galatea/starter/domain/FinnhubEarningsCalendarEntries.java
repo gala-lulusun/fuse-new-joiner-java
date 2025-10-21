@@ -17,8 +17,6 @@ public class FinnhubEarningsCalendarEntries {
 
   @Data
   @Builder
-  @NoArgsConstructor
-  @AllArgsConstructor
   public static class FinnhubEarningsEntry {
     private String date;
     private Integer quarter;

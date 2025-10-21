@@ -40,10 +40,17 @@ public interface FinnhubClient {
   @GetMapping(value = "${mvc.finnhub.getLastTradedPricePath}", produces = {MediaType.APPLICATION_JSON_VALUE})
   FinnhubLastTradedPrice getLastTradedPriceForSymbols(@RequestParam("symbol") String symbol);
 
+  /**
+   * Get historical and coming earnings release. See https://finnhub.io/docs/api/earnings-calendar.
+   *
+   * Optional parameters for filtering: date range (to, from) & symbol.
+   * @return a list of the earnings calendar entries for the params passed in.
+   */
+
   @GetMapping(value = "${mvc.finnhub.getEarningsCalendarPath}", produces = {MediaType.APPLICATION_JSON_VALUE})
   FinnhubEarningsCalendarEntries getEarningsCalendar(
-      @RequestParam ("from") String fromDate,
-      @RequestParam ("to") String toDate,
+      @RequestParam (value = "from", required = false) String fromDate,
+      @RequestParam (value = "to", required = false) String toDate,
       @RequestParam (value = "symbol", required = false) String symbol
   );
 

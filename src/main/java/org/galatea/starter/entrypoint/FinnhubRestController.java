@@ -6,6 +6,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import net.sf.aspect4log.Log;
 import net.sf.aspect4log.Log.Level;
+import org.galatea.starter.domain.FinnhubEarningsCalendarEntries;
+import org.galatea.starter.domain.FinnhubEarningsCalendarEntries.FinnhubEarningsEntry;
 import org.galatea.starter.domain.FinnhubLastTradedPrice;
 import org.galatea.starter.domain.FinnhubSymbol;
 import org.galatea.starter.service.FinnhubService;
@@ -53,4 +55,14 @@ public class FinnhubRestController {
     return finnhubService.getLastTradedPriceForSymbols(symbol);
   }
 
+  @GetMapping(value = "${mvc.finnhub.getEarningsCalendarPath}", produces = {
+      MediaType.APPLICATION_JSON_VALUE})
+  public List<FinnhubEarningsEntry> getEarningsCalendar(
+      @RequestParam ("from") String fromDate,
+      @RequestParam ("to") String toDate,
+      @RequestParam (value = "symbol", required = false) String symbol
+  ) {
+    return finnhubService.getEarningsCalendar(fromDate, toDate, symbol);
+
+  }
 }

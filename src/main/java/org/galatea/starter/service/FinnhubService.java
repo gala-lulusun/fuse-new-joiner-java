@@ -1,7 +1,10 @@
 package org.galatea.starter.service;
 
+
+import java.sql.SQLException;
 import java.util.Collections;
 import java.util.List;
+import java.util.Set;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -21,6 +24,8 @@ public class FinnhubService {
   @NonNull
   private FinnhubClient finnhubClient;
 
+  @NonNull
+  private FinnhubDBProvider finnhubDBProvider;
 
   /**
    * Get all stock symbols from Finnhub for the exchange code given
@@ -56,10 +61,13 @@ public class FinnhubService {
    */
   public List<FinnhubEarningsEntry> getEarningsCalendar(String fromDate, String toDate, String symbol) {
     log.info("Retrieving earnings calendar taking the parameters: fromDate={}, toDate={}, symbol={}", fromDate, toDate, symbol);
-    List<FinnhubEarningsEntry> earningsCalendars = finnhubClient.getEarningsCalendar(fromDate, toDate, symbol).finnhubEntries;
+
+    // TODO: Refactor this!!!!
+//    List<FinnhubEarningsEntry> earningsCalendars = finnhubDBProvider.getEarningsCalendar(fromDate, toDate, symbol).finnhubEntries;
+
+    List<FinnhubEarningsEntry> earningsCalendars = finnhubDBProvider.handleQuery(fromDate, toDate, symbol);
+
     log.info("Retrieved earnings calendar: earningsCalendars={}", earningsCalendars);
     return earningsCalendars;
   }
-
-
 }

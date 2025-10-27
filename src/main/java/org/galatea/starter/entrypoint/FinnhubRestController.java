@@ -1,12 +1,14 @@
 package org.galatea.starter.entrypoint;
 
+import java.sql.SQLException;
 import java.util.List;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import net.sf.aspect4log.Log;
 import net.sf.aspect4log.Log.Level;
-import org.galatea.starter.domain.FinnhubEarningsCalendarEntries.FinnhubEarningsEntry;
+import org.galatea.starter.domain.FinnhubEarningsCalendarEntries;
+import org.galatea.starter.domain.FinnhubEarningsEntry;
 import org.galatea.starter.domain.FinnhubLastTradedPrice;
 import org.galatea.starter.domain.FinnhubSymbol;
 import org.galatea.starter.service.FinnhubService;
@@ -66,7 +68,7 @@ public class FinnhubRestController {
       @RequestParam (value = "from", required = false) String fromDate,
       @RequestParam (value = "to", required = false) String toDate,
       @RequestParam (value = "symbol", required = false) String symbol
-  ) {
+  ) throws SQLException {
     return finnhubService.getEarningsCalendar(fromDate, toDate, symbol);
 
   }

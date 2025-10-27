@@ -8,7 +8,9 @@ import java.util.Set;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.galatea.starter.domain.FinnhubEarningsCalendarEntries.FinnhubEarningsEntry;
+import org.galatea.starter.domain.FinnhubEarningsCalendarEntries;
+import org.galatea.starter.domain.FinnhubEarningsEntry;
+import org.galatea.starter.domain.FinnhubEarningsEntry;
 import org.galatea.starter.domain.FinnhubLastTradedPrice;
 import org.galatea.starter.domain.FinnhubSymbol;
 import org.springframework.stereotype.Service;
@@ -59,7 +61,8 @@ public class FinnhubService {
    * Optional parameters for filtering: date range (to, from) & symbol.
    * @return a list of the earnings calendar entries for the params passed in.
    */
-  public List<FinnhubEarningsEntry> getEarningsCalendar(String fromDate, String toDate, String symbol) {
+  public List<FinnhubEarningsEntry> getEarningsCalendar(String fromDate, String toDate, String symbol)
+      throws SQLException {
     log.info("Retrieving earnings calendar taking the parameters: fromDate={}, toDate={}, symbol={}", fromDate, toDate, symbol);
 
     // TODO: Refactor this!!!!
